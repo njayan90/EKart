@@ -5,19 +5,28 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CartComponent } from './cart/cart.component';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+import { CompareComponent } from './compare/compare.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     DashboardComponent,
     CartComponent,
+    CompareComponent,
+    
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
+  entryComponents: [CompareComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

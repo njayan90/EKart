@@ -57,5 +57,4 @@ export class DataService {
   addToCart(i){
     this.data[i].addedToCart = true
   }
-
 }

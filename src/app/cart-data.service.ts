@@ -14,4 +14,8 @@ export class CartDataService {
   getItems(){
     return this.itemsInCart
   }
+
+  removeItems(index){
+    this.itemsInCart.splice(index,1)
+  }
 }

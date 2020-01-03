@@ -8,15 +8,17 @@ import { DataService } from '../data.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cartItems = []
+  cartItems : any = [];
   constructor(private cart : CartDataService , private data : DataService) { }
 
   ngOnInit() {
-    this.cartItems = this.cart.getItems()
+    this.cart.getItems().subscribe(data => {
+      this.cartItems = data
+    })
   }
 
   onClick(index,data){
-    data.addedToCart = false
-    this.cart.removeItems(index)
+    this.cartItems.splice(index,1)
+    this.data.removeFromCart(data).subscribe(data => {})
   }
 }

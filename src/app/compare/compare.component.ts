@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, } from '@angular/material/dialog';
+import { DataService } from '../data.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-compare',
@@ -7,9 +8,14 @@ import { MAT_DIALOG_DATA, } from '@angular/material/dialog';
   styleUrls: ['./compare.component.css']
 })
 export class CompareComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) private data) { }
+  compareList : any = []
+  constructor(private dataService : DataService , private http : HttpClient) { }
 
   ngOnInit() {
+
+    this.dataService.getCompareList().subscribe(data => {
+      this.compareList = data
+    })
   }
 
 }

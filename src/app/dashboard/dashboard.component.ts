@@ -17,31 +17,24 @@ export class DashboardComponent implements OnInit {
   constructor(private data : DataService, private cart : CartDataService , private snackBar : MatSnackBar, private dialog : MatDialog) { }
 
   ngOnInit() {
-    this.dataList = this.data.getDataList()
+   this.data.getDataList().subscribe(data => {
+     this.dataList = data
+   })
   }
 
   onClick(data , i){
-    this.cart.addItems(data)
-    this.data.addToCart(i)
+    this.data.addToCart(this.dataList[i]).subscribe((data) => {})
   }
 
-  openSnackBar(message,action,index){
-    if(!this.indexArray.includes(index)){
-      this.indexArray.push(index)
-      this.compareArray.push(action);
-    }
-    else {
-      this.compareArray.splice(this.indexArray.indexOf(index),1)
-      this.indexArray.splice(this.indexArray.indexOf(index),1)
-    }
+  openSnackBar(message,action){
+
+    this.data.addToCompare(action).subscribe(data => {})
     let snackBarRef =  this.snackBar.open(message,this.compareArray.length.toString(), {
-     
     })
     snackBarRef.onAction().subscribe(() => {
      let dialogRef = this.dialog.open(CompareComponent, {
        width : '75vw',
        height : '80vh',
-       data : this.compareArray
      })
     })
   }

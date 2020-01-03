@@ -9,6 +9,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CompareComponent } from './compare/compare.component';
+import {HttpClientModule} from '@angular/common/http'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,7 @@ import { CompareComponent } from './compare/compare.component';
     DashboardComponent,
     CartComponent,
     CompareComponent,
-    
+        
     
   ],
   imports: [
@@ -24,7 +26,8 @@ import { CompareComponent } from './compare/compare.component';
     AppRoutingModule,
     MatSnackBarModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
   ],
   entryComponents: [CompareComponent],
   providers: [],

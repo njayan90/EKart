@@ -4,6 +4,7 @@ import { CartDataService } from '../cart-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { CompareComponent } from '../compare/compare.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +15,7 @@ export class DashboardComponent implements OnInit {
   dataList ;
   compareArray : any = [];
   indexArray = [];
-  constructor(private data : DataService, private cart : CartDataService , private snackBar : MatSnackBar, private dialog : MatDialog) { }
+  constructor(private data : DataService, private cart : CartDataService , private snackBar : MatSnackBar, private dialog : MatDialog , private router : Router) { }
 
   ngOnInit() {
    this.data.getDataList().subscribe(data => {
@@ -30,7 +31,9 @@ export class DashboardComponent implements OnInit {
   }
 
   onClick(data , i){
-    this.data.addToCart(this.dataList[i]).subscribe((data) => {})
+    this.data.addToCart(this.dataList[i]).subscribe((data) => {
+      this.router.navigate(['/cart'])
+    })
   }
 
   openSnackBar(message,action = null){

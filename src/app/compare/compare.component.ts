@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from '../data.service';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-compare',
@@ -9,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CompareComponent implements OnInit {
   compareList : any = []
-  constructor(private dataService : DataService , private http : HttpClient) { }
+  constructor(private dataService : DataService , private http : HttpClient , private router : Router) { }
 
   ngOnInit() {
      this.dataService.getCompareList().subscribe(data => {

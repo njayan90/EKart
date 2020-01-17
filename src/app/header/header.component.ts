@@ -12,9 +12,4 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  onKeyUp(event){
-    this.search.search.next(event.target.value)
-  }
-
 }

@@ -12,9 +12,15 @@ mongoose.connect(url , (err) => {
 
 const Schema = mongoose.Schema
 const ItemsSchema = new Schema({
-    name : {type : String},
-    addedToCart : {type : Boolean},
-    imageUrl : {type : String}
+    name: {type : String},
+    imageUrl: {type : String},
+    storage : {type : String},
+    display : {type : String},
+    camera : {type : String},
+    battery : {type : String},
+    processor : {type : String},
+    description : {type : String} ,
+    cost : {type : Number}
 })
 
 const model = mongoose.model('items' , ItemsSchema)

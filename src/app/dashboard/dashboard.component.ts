@@ -12,7 +12,7 @@ import { CompareComponent } from '../compare/compare.component';
 })
 export class DashboardComponent implements OnInit {
   dataList ;
-  compareArray = [];
+  compareArray : any = [];
   indexArray = [];
   constructor(private data : DataService, private cart : CartDataService , private snackBar : MatSnackBar, private dialog : MatDialog) { }
 
@@ -20,16 +20,24 @@ export class DashboardComponent implements OnInit {
    this.data.getDataList().subscribe(data => {
      this.dataList = data
    })
+
+   this.data.getCompareList().subscribe(data => {
+     this.compareArray = data
+    if(this.compareArray.length>0){
+      this.openSnackBar("Compare")
+    }
+   })
   }
 
   onClick(data , i){
     this.data.addToCart(this.dataList[i]).subscribe((data) => {})
   }
 
-  openSnackBar(message,action){
-
+  openSnackBar(message,action = null){
+    if(action !== null){
     this.data.addToCompare(action).subscribe(data => {})
-    let snackBarRef =  this.snackBar.open(message,this.compareArray.length.toString(), {
+    }
+    let snackBarRef =  this.snackBar.open(message,"Open", {
     })
     snackBarRef.onAction().subscribe(() => {
      let dialogRef = this.dialog.open(CompareComponent, {

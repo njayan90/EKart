@@ -15,18 +15,22 @@ export class DataService {
   }
 
   addToCart(item){
-    return this.http.post('http://localhost:8080/insert',item)
+    return this.http.post('http://localhost:8080/cart/insert',item)
   }
 
   removeFromCart(item) {
-    return this.http.post('http://localhost:8080/cart' , item)
+    return this.http.post('http://localhost:8080/cart/remove' , item)
   }
 
   addToCompare(item){
-    return this.http.post('http://localhost:8080/compare' , item)
+    return this.http.post('http://localhost:8080/compare/insert' , item)
   }
 
   getCompareList(){
     return this.http.get('http://localhost:8080/compare')
+  }
+
+  removeFromCompare(item){
+    return this.http.post('http://localhost:8080/compare/remove' , item)
   }
 }

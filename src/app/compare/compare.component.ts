@@ -12,10 +12,17 @@ export class CompareComponent implements OnInit {
   constructor(private dataService : DataService , private http : HttpClient) { }
 
   ngOnInit() {
-
-    this.dataService.getCompareList().subscribe(data => {
+     this.dataService.getCompareList().subscribe(data => {
       this.compareList = data
     })
   }
 
+  removeFromCompare(index){
+    this.dataService.removeFromCompare(this.compareList[index]).subscribe(data => {})
+    this.compareList.splice(index,1)
+  }
+
+  addToCart(item){
+    this.dataService.addToCart(item).subscribe(data => {})
+  }
 }

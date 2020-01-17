@@ -32,7 +32,7 @@ app.get('/dashboard', (req,res) => {
     })
 })
 
-app.post('/insert', (req, res) => {
+app.post('/cart/insert', (req, res) => {
     const mod = new model1(req.body)
     mod.save((err, data) => {
         if (err) res.send(err)
@@ -47,14 +47,14 @@ app.get('/cart',(req,res) => {
     })
 })
 
-app.post('/cart' , (req,res) => {
+app.post('/cart/remove' , (req,res) => {
     model1.remove({_id : req.body._id} , (err,data) => {
         if(err) res.send(err)
         else res.send(data)
     })
 })
 
-app.post('/compare' , (req,res) => {
+app.post('/compare/insert' , (req,res) => {
     const mod = new compareModel(req.body)
     mod.save((err,data) => {
         if(err) res.send(err)
@@ -63,11 +63,16 @@ app.post('/compare' , (req,res) => {
 })
 
 app.get('/compare' , (req,res) => {
-
-    compareModel.find({} , (err,data) => {
+   compareModel.find({} , (err,data) => {
         if(err) res.send(err)
         else res.send(data)
     })
 
+app.post('/compare/remove' , (req,res) => {
+    compareModel.remove({_id : req.body._id} , (err,data) => {
+        if(err) res.send(err)
+        else res.send(data)
+    })
+})
 })
 app.listen(8080)

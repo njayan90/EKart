@@ -15,6 +15,7 @@ export class CartComponent implements OnInit {
     this.cart.getItems().subscribe(data => {
       this.cartItems = data
     })
+    
   }
 
   onClick(index,data){

@@ -1,14 +1,29 @@
 <div class="row" >
-<div class="col-md-4" *ngFor = "let item of compareList ; let i = index">
-<img src="{{item.imageUrl}}" alt="" class="img-responsive" [ngStyle] = "{'max-height.vh' : '35'}">
-<h4>{{item.name}}</h4>
-<p><b>Storage</b> : {{item.storage}}</p>
-<p><b>Display</b> : {{item.display}}</p>
-<p><b>Camera</b> : {{item.camera}}</p>
-<p><b>Battery</b> : {{item.battery}}</p>
-<p><b>Processor</b> : {{item.processor}}</p>
-<button class="btn btn-success" (click) = "addToCart(item)">Add To Cart</button>
-<button class="btn btn-danger" (click) = "removeFromCompare(i)">Remove</button>
+<div class="card col-md-4" *ngFor = "let item of compareList ; let i = index">
+<ul class="list-group mt-2 mb-2" >
+<li class="list-group-item">
+<div [ngStyle] = "{'text-align' : 'center'}">
+  <img src="{{item.imageUrl}}" alt="" class="card-img-top img-responsive" [ngStyle] = "{'max-height.vh' : '35' , 'max-width.vw' : '5'}">
 </div>
-
+</li>
+<li class="list-group-item text">
+<h5>Name : {{item.name}}</h5>
+</li>
+<li class="list-group-item text">
+<p><b>Storage</b> : {{item.storage}}</p>
+</li>
+<li class="list-group-item text">
+<p><b>Display</b> : {{item.display}}</p></li>
+<li class="list-group-item text">
+<p><b>Camera</b> : {{item.camera}}</p></li>
+<li class="list-group-item text">
+<p><b>Battery</b> : {{item.battery}}</p></li>
+<li class="list-group-item text">
+<p><b>Processor</b> : {{item.processor}}</p></li>
+<li class="list-group-item text">
+<p><b>Price</b> : {{item.cost}}</p></li>
+<button class="btn btn-success mt-2" (click) = "addToCart(item)">Add To Cart</button>
+<button class="btn btn-danger mt-2" (click) = "removeFromCompare(i)">Remove</button>
+</ul>
+</div>
 </div>

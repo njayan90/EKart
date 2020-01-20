@@ -29,43 +29,24 @@
             <ul class="list-group">
                 <li class="list-group-item">
                     <span class="float-left">Price ({{cartItems.length}} Item(s)) : </span>
-                    <span class="float-right cost">30000</span>
+                    <span class="float-right cost">{{totalCost.price}}</span>
                 </li>
                 <li class="list-group-item">
-                    <span class="float-left">GST (18%) : </span>
-                    <span class="float-right cost">540</span>
+                    <span class="float-left">GST (12%) : </span>
+                    <span class="float-right cost">{{totalCost.gst}}</span>
                 </li>
                 <li class="list-group-item">
                     <span class="float-left">Delivery Fee : </span>
-                    <span class="float-right cost">300</span>
+                    <span class="float-right cost">{{totalCost.delivery}}</span>
                 </li>
                 <li class="list-group-item pt-4" [ngStyle]="{'font-weight': '500'}">
                     <span class="float-left">Total Payable : </span>
-                    <span class="float-right cost">30840</span>
+                    <span class="float-right cost">{{totalCost.total}}</span>
                 </li>
-            </ul>
+            </ul>   
         </div>
         <button class="btn btn-orange mt-4">Place Order</button>
     </div>
-
-    <!-- <h1 style = "text-align: center">Cart Items</h1>
-    <div class="col-md-6">
-    <div class="list-group " *ngFor = "let data of cartItems ; let i = index">
-        <a class="list-group-item ">
-            <div class="float-left">
-            <h4 class="list-group-heading">{{data.name}}</h4>
-            </div>
-            <div class="float-right">
-                <button type="button" class="close" (click)="onClick(i,data)"> 
-                <span aria-hidden="true">&times;</span>
-                </button>
-                <img src="{{data.imageUrl}}" class="img-responsive" style="max-height: 50px">
-            </div>
-        </a>
-    </div>
-</div> -->
-
-
 </div>
 
 <ng-template #emptyCart>

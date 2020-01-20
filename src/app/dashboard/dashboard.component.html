@@ -1,25 +1,10 @@
-<!-- <div class=" row">
-    <div class="col-md-4" *ngFor = "let data of dataList ; let i = index">
-        <div class="card">
-            <div class="card-header">{{data.name}}</div>
-            <div class="card-body">
-            <img src="{{data.imageUrl}}" class="card-img-top"> 
-            </div>
-            <div class="card-footer">
-            <button class="btn btn-primary float-left" (click)="openSnackBar('Compare',data)">Add To Compare</button>
-            <button class="btn btn-success float-right" (click)="onClick(data , i)" [disabled] = "data.addedToCart">Add To Cart</button>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<div class="card" *ngFor = "let data of dataList ; let i = index">
+<div class="card ml-5 mr-5 mt-3" *ngFor = "let data of dataList ; let i = index">
     <div class="row">
-        <div class="col-md-3">
-            <img src="{{data.imageUrl}}" [ngStyle] = "{'max-height.vh' : '35'}">
+        <div class="col-md-3 mt-3">
+            <img src="{{data.imageUrl}}" [ngStyle] = "{'max-height.vh' : '32'}">
         </div>
-        <div class="col-md-6" [ngStyle]="{'text-align' : 'left'}">
-            <h3>{{data.name}}</h3>
+        <div class="col-md-6 mt-2" [ngStyle]="{'text-align' : 'left'}">
+            <h5>{{data.name}}</h5>
             <p>{{data.storage}}</p>
             <p>{{data.display}}</p>
             <p>{{data.camera}}</p>
@@ -28,9 +13,9 @@
         </div>
         <div class="col-md-3 mt-5">
             <h4>&#8377;{{data.cost}}</h4>
-            <button class="btn btn-success" (click)="onClick(data , i)">Add To Cart</button>
-            <br><br>
-            <button class="btn btn-primary" (click)="openSnackBar('Compare',data)">Compare</button>
+            <button class="btn btn-success mt-2" (click)="onClick(data , i)">Add To Cart</button>
+            <br>
+            <button [ngStyle] = "{'width.em' : '7'}" class="btn btn-primary mt-3" (click)="openSnackBar('Compare',data)">Compare</button>
         </div>
     </div>
 </div>

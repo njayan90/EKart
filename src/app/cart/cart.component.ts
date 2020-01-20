@@ -9,11 +9,16 @@ import { DataService } from '../data.service';
 })
 export class CartComponent implements OnInit {
   cartItems : any = [];
+  totalCost;
   constructor(private cart : CartDataService , private data : DataService) { }
 
   ngOnInit() {
-    this.cart.getItems().subscribe(data => {
+    this.cart.getItems();
+    this.cart.itemSubject.subscribe(data => {
       this.cartItems = data
+    })
+    this.cart.costSubject.subscribe(data => {
+      this.totalCost = data
     })
     
   }
@@ -21,5 +26,9 @@ export class CartComponent implements OnInit {
   onClick(index,data){
     this.cartItems.splice(index,1)
     this.data.removeFromCart(data).subscribe(data => {})
+    this.totalCost.price = this.totalCost.price - data.cost
+    this.totalCost.gst = Math.ceil(0.12 * this.totalCost.price)
+    this.totalCost.total = this.totalCost.price + this.totalCost.gst + this.totalCost.delivery
+    this.cart.costSubject.next(this.totalCost)
   }
 }

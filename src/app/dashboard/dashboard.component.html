@@ -1,7 +1,7 @@
-<div class="card ml-5 mr-5 mt-3" *ngFor = "let data of dataList ; let i = index">
+<div class="ml-5 mr-5 card mt-3" *ngFor="let data of dataList ; let i = index">
     <div class="row">
         <div class="col-md-3 mt-3">
-            <img src="{{data.imageUrl}}" [ngStyle] = "{'max-height.vh' : '32'}">
+            <img src="{{data.imageUrl}}" [ngStyle]="{'max-height.vh' : '32'}">
         </div>
         <div class="col-md-6 mt-2" [ngStyle]="{'text-align' : 'left'}">
             <h5>{{data.name}}</h5>
@@ -15,8 +15,8 @@
             <h4>&#8377;{{data.cost}}</h4>
             <button class="btn btn-success mt-2" (click)="onClick(data , i)">Add To Cart</button>
             <br>
-            <button [ngStyle] = "{'width.em' : '7'}" class="btn btn-primary mt-3" (click)="openSnackBar('Compare',data)">Compare</button>
+            <button [ngStyle]="{'width.em' : '7'}" class="btn btn-primary mt-3"
+                (click)="openSnackBar('Compare',data)">Compare</button>
         </div>
     </div>
 </div>
-

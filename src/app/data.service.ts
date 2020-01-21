@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable , OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -7,13 +7,15 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DataService {
-  dataList = new Subject();
-  search = new Subject();
+  dataList ;
+  data = new Subject();
+  searchValue = new Subject();
   constructor(private http : HttpClient) { }
+ 
   getDataList(){
-    return this.http.get('http://localhost:8080/dashboard')
+     return this.http.get('http://localhost:8080/dashboard')
   }
-
+   
   addToCart(item){
     return this.http.post('http://localhost:8080/cart/insert',item)
   }
@@ -32,5 +34,9 @@ export class DataService {
 
   removeFromCompare(item){
     return this.http.post('http://localhost:8080/compare/remove' , item)
+  }
+
+  search(name){
+    return this.http.post('http://localhost:8080/dashboard/search' , name)
   }
 }

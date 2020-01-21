@@ -18,9 +18,12 @@ export class DashboardComponent implements OnInit {
   constructor(private data : DataService, private cart : CartDataService , private snackBar : MatSnackBar, private dialog : MatDialog , private router : Router) { }
 
   ngOnInit() {
-   this.data.getDataList().subscribe(data => {
-     this.dataList = data
-   })
+    this.data.search({name : ''}).subscribe(data => {
+      this.data.data.next(data)
+    }) 
+   this.data.data.subscribe(data => {
+      this.dataList = data
+    })
 
    this.data.getCompareList().subscribe(data => {
      this.compareArray = data
@@ -31,7 +34,7 @@ export class DashboardComponent implements OnInit {
   }
 
   onClick(data , i){
-    this.data.addToCart(this.dataList[i]).subscribe((data) => {
+    this.data.addToCart(data).subscribe((data) => {
       this.router.navigate(['/cart'])
     })
   }

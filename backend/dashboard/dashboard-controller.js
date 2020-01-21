@@ -73,12 +73,20 @@ app.get('/compare' , (req,res) => {
         if(err) res.send(err)
         else res.send(data)
     })
-
+})
 app.post('/compare/remove' , (req,res) => {
     compareModel.remove({_id : req.body._id} , (err,data) => {
         if(err) res.send(err)
         else res.send(data)
     })
 })
+
+app.post('/dashboard/search' , (req,res) => {
+    model.find({ 'name' : { '$regex' : req.body.name, '$options' : 'i' } } , (err,data) => {
+        if(err) res.send(err)
+        else res.send(data)
+    })
+    
 })
+
 app.listen(8080)

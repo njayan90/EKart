@@ -9,7 +9,13 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CompareComponent } from './compare/compare.component';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './sign-up/sign-up.component'
+import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {NgxSpinnerModule} from 'ngx-spinner'
 
 @NgModule({
   declarations: [
@@ -18,8 +24,8 @@ import {HttpClientModule} from '@angular/common/http'
     DashboardComponent,
     CartComponent,
     CompareComponent,
-        
-    
+    LoginComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +33,11 @@ import {HttpClientModule} from '@angular/common/http'
     MatSnackBarModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatPaginatorModule,
+    NgxSpinnerModule
   ],
   entryComponents: [CompareComponent],
   providers: [],

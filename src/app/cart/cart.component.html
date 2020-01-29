@@ -1,3 +1,4 @@
+<ngx-spinner></ngx-spinner>
 <div class = "row pl-5 pr-5 mt-5" *ngIf = "cartItems.length>0 ; else emptyCart" >
     <div class="card card-body col-md-8 mt-2">
         <h5 [ngStyle]="{'text-align' : 'center'}">My Cart({{cartItems.length}})</h5>
@@ -50,7 +51,7 @@
 </div>
 
 <ng-template #emptyCart>
-    <h1 style = "text-align: center">No Items in cart</h1>
+    <h1 style = "text-align: center; margin-top : 35vh">No Items in cart</h1>
 </ng-template>
 
 

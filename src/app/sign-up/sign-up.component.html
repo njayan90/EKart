@@ -1,0 +1,26 @@
+<div class="card mt-5" [ngStyle] = "{'width.vw' : '30' , 'height' : 'fit-content' , 'margin-left.vw' : '35'}">
+<div class="card-header" [ngStyle] = "{'text-align' : 'center' , 'background-color' : '#007bff' , 'color' : 'white'}">
+    <h5>Signup</h5>
+</div>
+<div class="card-body">
+<form (ngSubmit)="signup(f)" #f="ngForm"> 
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" ngModel name="email" class="form-control" placeholder="Enter Your Email" required email #email="ngModel">
+        <span class="help-block" *ngIf = "email.invalid && email.touched" >Enter a Valid Email</span>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" ngModel name="password" class="form-control" placeholder="Enter Your Password" required #password="ngModel">
+        <span class="help-block" *ngIf = "password.invalid && password.touched">Enter a Valid Password</span>
+    </div>
+    <div class="form-group">
+            <label for="cpassword">Confirm Password</label>
+            <input type="password" ngModel name="cpassword" class="form-control" placeholder="Enter Your Password" required #cpassword="ngModel">
+            <span class="help-block" *ngIf = "cpassword.touched && (cpassword.invalid || cpassword.value != password.value)">Passwords Do Not Match</span>
+    </div>
+    <button class="btn btn-success" type="submit" [disabled]="f.invalid || (cpassword.value != password.value)">SignUp</button> |
+    <button class="btn btn-danger" type="button" (click)="reset(f)">Reset</button>
+</form>
+</div>
+</div>

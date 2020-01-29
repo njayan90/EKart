@@ -8,12 +8,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DataService {
   dataList ;
+  queryParam ;
   data = new Subject();
   searchValue = new Subject();
   constructor(private http : HttpClient) { }
  
-  getDataList(){
-     return this.http.get('http://localhost:8080/dashboard')
+  getDataList(pageSize : number , currentPage : number, sortCategory : string){
+     this.queryParam = `?pageSize=${pageSize}&currentPage=${currentPage}&sortCategory=${sortCategory}`
+     return this.http.get('http://localhost:8080/dashboard' + this.queryParam)
   }
    
   addToCart(item){

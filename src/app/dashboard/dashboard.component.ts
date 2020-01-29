@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DataService } from '../data.service';
 import { CartDataService } from '../cart-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { CompareComponent } from '../compare/compare.component';
 import { Router } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-dashboard',
@@ -15,11 +17,15 @@ export class DashboardComponent implements OnInit {
   dataList ;
   compareArray : any = [];
   indexArray = [];
-  constructor(private data : DataService, private cart : CartDataService , private snackBar : MatSnackBar, private dialog : MatDialog , private router : Router) { }
+  sortCategory = "new";
+  @ViewChild('paginator' , {static : false}) paginator : PageEvent
+  constructor(private data : DataService, private cart : CartDataService , private snackBar : MatSnackBar, private dialog : MatDialog , private router : Router,private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    this.data.search({name : ''}).subscribe(data => {
-      this.data.data.next(data)
+    this.spinner.show();
+    this.data.getDataList(4,1,this.sortCategory).subscribe(data => {
+      this.dataList = data
+      this.spinner.hide();
     }) 
    this.data.data.subscribe(data => {
       this.dataList = data
@@ -52,6 +58,49 @@ export class DashboardComponent implements OnInit {
      })
     })
   }
+
+  lowToHigh(){
+    this.spinner.show();
+    this.paginator.pageIndex = 0
+    this.sortCategory = "lowToHigh"
+    this.data.getDataList(4,1,this.sortCategory).subscribe(data => {
+      this.dataList = data
+      this.spinner.hide()
+    })
+    // this.data.lowToHigh().subscribe(data => {
+    //   this.dataList = data
+    // })
+  }
   
+  highToLow(){
+    this.spinner.show();
+    this.paginator.pageIndex = 0
+    this.sortCategory = "highToLow"
+    this.data.getDataList(4,1,this.sortCategory).subscribe(data => {
+      this.dataList = data
+      this.spinner.hide()
+    })
+    // this.data.highToLow().subscribe(data => {
+    //   this.dataList = data
+    // })
+  }
+
+  newest(){
+    this.spinner.show();
+    this.paginator.pageIndex = 0
+    this.sortCategory = "new"
+    this.data.getDataList(4,1,this.sortCategory).subscribe(data => {
+      this.dataList = data
+      this.spinner.hide();
+    }) 
+  }
+
+  onChangedPage(event : PageEvent){
+    this.spinner.show();
+    this.data.getDataList(4,event.pageIndex+1,this.sortCategory).subscribe(data => {
+      this.dataList = data
+      this.spinner.hide();
+    }) 
+  }
 
 }

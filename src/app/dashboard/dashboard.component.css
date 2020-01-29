@@ -8,3 +8,7 @@ padding : 1em
     max-height: fit-content;
     max-width : fit-content;
 }
+
+.sort{
+    cursor: pointer;
+}

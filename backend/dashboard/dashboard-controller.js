@@ -25,19 +25,19 @@ app.get('/dashboard', (req,res) => {
     const pageSize = +req.query.pageSize
     const currentPage = +req.query.currentPage
     if(req.query.sortCategory==="new"){
-        model.find({} , (err,data) => {
+        model.find({ 'name' : { '$regex' : req.query.name, '$options' : 'i' }} , (err,data) => {
             if(err) res.send(err)
             else res.send(data)
         }).skip(pageSize * (currentPage -1)).limit(pageSize)
     }
     else if(req.query.sortCategory==="lowToHigh"){
-        model.find({} , (err,data) => {
+        model.find({ 'name' : { '$regex' : req.query.name, '$options' : 'i' }} , (err,data) => {
             if(err) res.send(err)
             else res.send(data)
         }).sort({cost : 1}).skip(pageSize * (currentPage -1)).limit(pageSize)
     }
     else{
-        model.find({} , (err,data) =>{
+        model.find({ 'name' : { '$regex' : req.query.name, '$options' : 'i' }} , (err,data) =>{
             if(err) res.send(err)
             else res.send(data)
         }).sort({cost : -1}).skip(pageSize * (currentPage -1)).limit(pageSize)

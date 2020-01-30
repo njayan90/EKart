@@ -18,12 +18,16 @@ export class DashboardComponent implements OnInit {
   compareArray : any = [];
   indexArray = [];
   sortCategory = "new";
+  searchString : any = "";
   @ViewChild('paginator' , {static : false}) paginator : PageEvent
   constructor(private data : DataService, private cart : CartDataService , private snackBar : MatSnackBar, private dialog : MatDialog , private router : Router,private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.spinner.show();
-    this.data.getDataList(4,1,this.sortCategory).subscribe(data => {
+    this.data.searchValue.subscribe(data => {
+      this.searchString = data
+    })
+    this.data.getDataList(4,1,this.sortCategory,this.searchString).subscribe(data => {
       this.dataList = data
       this.spinner.hide();
     }) 
@@ -63,7 +67,7 @@ export class DashboardComponent implements OnInit {
     this.spinner.show();
     this.paginator.pageIndex = 0
     this.sortCategory = "lowToHigh"
-    this.data.getDataList(4,1,this.sortCategory).subscribe(data => {
+    this.data.getDataList(4,1,this.sortCategory,this.searchString).subscribe(data => {
       this.dataList = data
       this.spinner.hide()
     })
@@ -76,7 +80,7 @@ export class DashboardComponent implements OnInit {
     this.spinner.show();
     this.paginator.pageIndex = 0
     this.sortCategory = "highToLow"
-    this.data.getDataList(4,1,this.sortCategory).subscribe(data => {
+    this.data.getDataList(4,1,this.sortCategory,this.searchString).subscribe(data => {
       this.dataList = data
       this.spinner.hide()
     })
@@ -89,7 +93,7 @@ export class DashboardComponent implements OnInit {
     this.spinner.show();
     this.paginator.pageIndex = 0
     this.sortCategory = "new"
-    this.data.getDataList(4,1,this.sortCategory).subscribe(data => {
+    this.data.getDataList(4,1,this.sortCategory,this.searchString).subscribe(data => {
       this.dataList = data
       this.spinner.hide();
     }) 
@@ -97,7 +101,7 @@ export class DashboardComponent implements OnInit {
 
   onChangedPage(event : PageEvent){
     this.spinner.show();
-    this.data.getDataList(4,event.pageIndex+1,this.sortCategory).subscribe(data => {
+    this.data.getDataList(4,event.pageIndex+1,this.sortCategory,this.searchString).subscribe(data => {
       this.dataList = data
       this.spinner.hide();
     }) 

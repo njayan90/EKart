@@ -13,8 +13,8 @@ export class DataService {
   searchValue = new Subject();
   constructor(private http : HttpClient) { }
  
-  getDataList(pageSize : number , currentPage : number, sortCategory : string){
-     this.queryParam = `?pageSize=${pageSize}&currentPage=${currentPage}&sortCategory=${sortCategory}`
+  getDataList(pageSize : number , currentPage : number, sortCategory : string , name : string){
+     this.queryParam = `?pageSize=${pageSize}&currentPage=${currentPage}&sortCategory=${sortCategory}&name=${name}`
      return this.http.get('http://localhost:8080/dashboard' + this.queryParam)
   }
    

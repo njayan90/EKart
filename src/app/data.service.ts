@@ -33,12 +33,7 @@ export class DataService {
   getCompareList(){
     return this.http.get('http://localhost:8080/compare')
   }
-
   removeFromCompare(item){
     return this.http.post('http://localhost:8080/compare/remove' , item)
-  }
-
-  search(name){
-    return this.http.post('http://localhost:8080/dashboard/search' , name)
   }
 }

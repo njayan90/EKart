@@ -7,6 +7,7 @@ const model1 = require('../cart/cart-model')
 const compareModel = require('../compare/compare-model')
 const userModel = require('../user/user-model')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 const app = express()
 app.use(bodyParser());
@@ -87,14 +88,6 @@ app.post('/compare/remove' , (req,res) => {
     })
 })
 
-app.post('/dashboard/search' , (req,res) => {
-    model.find({ 'name' : { '$regex' : req.body.name, '$options' : 'i' } } , (err,data) => {
-        if(err) res.send(err)
-        else res.send(data)
-    })
-    
-})
-
 app.post('/users/signup' , (req,res) => {
     bcrypt.hash(req.body.password , 10).then(hash => {
         const user = new userModel({
@@ -106,6 +99,19 @@ app.post('/users/signup' , (req,res) => {
             else res.send(data)
         })
     })
+})
+
+app.post('/users/login' , (req,res) => {
+   userModel.findOne({'email' : req.body.email } , (err , data) => {
+       if(data){
+           bcrypt.compare(req.body.password , data.password , (err , result) => {
+               if(result){
+                   const token = jwt.sign({email : data.email , userId : data._id} , "secret_key_should_be_longer" , {expiresIn : "1h"})
+                   res.send({token : token})
+               }
+           })
+       }
+   })
 })
 
 app.listen(8080)

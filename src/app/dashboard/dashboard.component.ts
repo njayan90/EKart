@@ -7,6 +7,7 @@ import { CompareComponent } from '../compare/compare.component';
 import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 import { NgxSpinnerService } from "ngx-spinner";
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-dashboard',

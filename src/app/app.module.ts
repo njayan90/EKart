@@ -17,6 +17,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {NgxSpinnerModule} from 'ngx-spinner'
 
+
 @NgModule({
   declarations: [
     AppComponent,

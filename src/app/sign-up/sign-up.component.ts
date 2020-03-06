@@ -15,6 +15,7 @@ export class SignUpComponent implements OnInit {
   }
 
   signup(form : NgForm){
+    console.log(form)
     if(form.value.password === form.value.cpassword){
     this.sign.addUser(form.value.email , form.value.password).subscribe(data => {})
     }

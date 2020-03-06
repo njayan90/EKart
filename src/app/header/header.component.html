@@ -9,7 +9,7 @@
         <a routerLink = "/dashboard" routerLinkActive = 'active' class="nav-link">Dashboard</a>
     </li>
     <li class="nav-item">
-        <a routerLink = "/cart" routerLinkActive = 'active' class="nav-link"><i class="fa fa-shopping-cart fa-lg" data-count="4"></i><span *ngIf="cartItems.length>0" class="badge">{{cartItems.length}}</span></a>
+        <a routerLink = "/cart" routerLinkActive = 'active' class="nav-link"><i class="fa fa-shopping-cart fa-lg"></i><span *ngIf="cartItems.length>0" class="badge ml-1" [ngStyle]="{'background-color' : 'red'}">{{cartItems.length}}</span></a>
     </li>
     <li class="nav-item ml-2">
        <input type="text" class="form-control" placeholder="Search" (keyup)="onSearch($event)">

@@ -108,4 +108,8 @@ export class DashboardComponent implements OnInit {
     }) 
   }
 
+  itemClick(data){
+    console.log(data)
+  }
+
 }

@@ -14,7 +14,7 @@
     </li>
 </ul>
 
-<div class="card ml-5 mr-5 mt-3" *ngFor = "let data of dataList ; let i = index">
+<div class="card ml-5 mr-5 mt-3" *ngFor = "let data of dataList ; let i = index" (click)="itemClick(data)" [ngStyle]="{'cursor' : 'pointer'}">  
     <div class="row">
         <div class="col-md-3 mt-3">
             <img src="{{data.imageUrl}}" [ngStyle] = "{'max-height.vh' : '32'}">
